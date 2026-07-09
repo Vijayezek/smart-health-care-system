@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Manage and monitor your healthcare system</p>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <p class="stat-number">{{ total_users }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Doctors</h3>
+            <p class="stat-number">{{ total_doctors }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Feedbacks</h3>
+            <p class="stat-number">{{ total_feedbacks }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Medicines</h3>
+            <p class="stat-number">{{ total_medicines }}</p>
+        </div>
+    </div>
+    
+    <div class="dashboard-grid">
+        <div class="chart-section">
+            <div class="card">
+                <h2>Feedback Sentiment Analysis</h2>
+                <canvas id="sentimentChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="manage-section">
+            <div class="card">
+                <h2>Quick Management</h2>
+                <a href="{{ url_for('manage_users') }}" class="btn btn-primary btn-block">Manage Users</a>
+                <a href="{{ url_for('manage_doctors') }}" class="btn btn-primary btn-block">Manage Doctors</a>
+                <a href="{{ url_for('manage_medicines') }}" class="btn btn-primary btn-block">Manage Medicines</a>
+                <a href="{{ url_for('manage_feedbacks') }}" class="btn btn-primary btn-block">View Feedbacks</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const ctx = document.getElementById('sentimentChart');
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Positive', 'Negative', 'Neutral'],
+        datasets: [{
+            data: [{{ positive_feedback }}, {{ negative_feedback }}, {{ neutral_feedback }}],
+            backgroundColor: ['#0077B6', '#FF7F50', '#C9A0DC']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

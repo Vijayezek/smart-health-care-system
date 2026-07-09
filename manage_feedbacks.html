@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Manage Feedbacks</h1>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    
+    <div class="card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Sentiment</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback['feed_id'] }}</td>
+                    <td>{{ feedback['user_name'] }}</td>
+                    <td>{{ feedback['email'] }}</td>
+                    <td>{{ feedback['message'] }}</td>
+                    <td>
+                        <span class="badge badge-{{ feedback['sentiment'] }}">
+                            {{ feedback['sentiment'] }}
+                        </span>
+                    </td>
+                    <td>{{ feedback['timestamp'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

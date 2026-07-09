@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="landing-page">
+    <div class="hero-section">
+        <h1 class="hero-title">Smart Health Care System</h1>
+        <p class="hero-subtitle">AI-Powered Disease Prediction & Sentiment Analysis</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('login') }}" class="btn btn-primary">User Login</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">Register</a>
+            <a href="{{ url_for('admin_login') }}" class="btn btn-admin">Admin Login</a>
+        </div>
+    </div>
+    
+    <div class="features-section">
+        <div class="feature-card">
+            <h3>🩺 Disease Prediction</h3>
+            <p>Advanced ML models to predict diseases based on your symptoms</p>
+        </div>
+        <div class="feature-card">
+            <h3>💊 Medicine Recommendations</h3>
+            <p>Get instant medicine suggestions for predicted conditions</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 Sentiment Analysis</h3>
+            <p>AI-powered feedback analysis to improve healthcare services</p>
+        </div>
+        <div class="feature-card">
+            <h3>👨‍⚕️ Expert Doctors</h3>
+            <p>Access to qualified healthcare professionals</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

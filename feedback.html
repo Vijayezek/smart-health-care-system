@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Submit Feedback</h2>
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label>Your Feedback</label>
+                <textarea name="message" class="form-input" rows="6" placeholder="Share your experience with us..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+        </form>
+        <p class="auth-footer">
+            <a href="{{ url_for('user_dashboard') }}">Back to Dashboard</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

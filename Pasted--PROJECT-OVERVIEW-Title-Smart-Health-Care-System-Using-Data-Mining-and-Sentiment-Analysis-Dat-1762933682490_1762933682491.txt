@@ -1,0 +1,195 @@
+💡 PROJECT OVERVIEW
+
+Title: Smart Health Care System Using Data Mining and Sentiment Analysis
+Database: SQLite
+Deployable On: Visual Studio Code & Replit
+Theme: Cool modern palette — teal, mint, lavender, ocean blue (no white/black backgrounds)
+Timezone: Indian Standard Time (IST)
+
+⚙️ TECHNOLOGY STACK
+Category	Tools / Frameworks
+Frontend	HTML5, CSS3, TailwindCSS (or Bootstrap 5 with custom theme), JavaScript
+Backend	Flask (Python)
+Database	SQLite3
+ML Libraries	scikit-learn, pandas, numpy, nltk
+Visualization	Chart.js (for live analytics)
+Security	Werkzeug (hashed passwords), Flask-Login
+Time Zone	pytz (Asia/Kolkata)
+Export	ReportLab (for PDF prescriptions)
+🧩 MODULES OVERVIEW
+1️⃣ USER MODULE
+
+Register, Login, Logout
+
+Input symptoms to get predicted medicines
+
+View doctor details
+
+Submit feedback (stored in database, analyzed for sentiment)
+
+Download prescription PDF
+
+2️⃣ ADMIN MODULE (CRUD)
+
+Admin Panel Functions:
+
+Create, Read, Update, Delete:
+
+Users
+
+Doctors
+
+Symptoms
+
+Medicines
+
+Feedback records
+
+View real-time analytics:
+
+Count of diseases, users, feedback positivity rate
+
+Generate backup of database (.db file export)
+
+3️⃣ DATA MINING & ML MODULE
+
+Text Preprocessing (Stopword removal, stemming using NLTK)
+
+TF-IDF Vectorization
+
+Sentiment Analysis (Naive Bayes)
+
+Disease Prediction (KNN or SVM on symptom dataset)
+
+4️⃣ SYSTEM LOGS (IST Enabled)
+
+All activities like:
+
+from datetime import datetime
+import pytz
+
+def get_ist_time():
+    ist = pytz.timezone('Asia/Kolkata')
+    return datetime.now(ist).strftime('%Y-%m-%d %H:%M:%S')
+
+
+→ used to store timestamps in the SQLite tables.
+
+🧱 DATABASE DESIGN (SQLite)
+
+Database: smart_health.db
+
+Tables:
+
+users(user_id INTEGER PRIMARY KEY, name TEXT, email TEXT UNIQUE, mobile TEXT, password TEXT, created_at TEXT)
+
+admin(admin_id INTEGER PRIMARY KEY, username TEXT UNIQUE, password TEXT)
+
+doctors(doc_id INTEGER PRIMARY KEY, name TEXT, specialization TEXT, contact TEXT, experience TEXT)
+
+symptoms(symp_id INTEGER PRIMARY KEY, symptom_name TEXT, description TEXT)
+
+medicines(med_id INTEGER PRIMARY KEY, med_name TEXT, disease TEXT, usage TEXT, side_effects TEXT)
+
+feedbacks(feed_id INTEGER PRIMARY KEY, user_id INTEGER, message TEXT, sentiment TEXT, timestamp TEXT)
+
+🧮 PROJECT WORKFLOW
+
+User logs in or registers.
+
+User enters symptom(s) → processed through NLP (TF-IDF + KNN).
+
+System predicts most relevant medicine.
+
+User feedback analyzed with sentiment classifier.
+
+Admin views dashboard → statistics and CRUD management.
+
+Timestamps saved in IST for all interactions.
+
+🎨 UI/UX DESIGN SYSTEM (No white/black backgrounds)
+✴️ Color Palette
+Element	Color	Hex Code
+Primary Background	Gradient (Mint Green → Teal)	#98FF98 → #008080
+Secondary Background	Soft Lavender	#C9A0DC
+Accent Color	Ocean Blue	#0077B6
+Text	Deep Charcoal (non-black)	#2F2F2F
+Buttons	Coral / Amber	#FF7F50 / #FFC107
+Cards & Panels	Frosted Glass Style (Blur 20%)	RGBA overlay
+✴️ Typography
+
+Font Family: “Poppins” or “Nunito Sans”
+
+Headings: Bold + gradient text
+
+Body: Medium weight for readability
+
+✴️ Layout Plan
+
+Landing Page:
+Clean hero section with gradient background, rounded login card.
+
+User Dashboard:
+
+Left sidebar → “Home”, “My Symptoms”, “Medicines”, “Feedback”
+
+Center → dynamic cards showing disease prediction results.
+
+Right → live charts for feedback sentiment (positive/negative %).
+
+Admin Dashboard:
+
+Top navbar with admin name + logout
+
+Cards showing total users, feedback count, disease types
+
+Table list (CRUD) for doctors, symptoms, medicines
+
+🧰 FOLDER STRUCTURE
+SmartHealthCare/
+│
+├── app.py
+├── database/
+│   └── smart_health.db
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── dashboard.js
+│   └── images/
+│       └── icons, logo, backgrounds
+├── templates/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── user_dashboard.html
+│   ├── admin_dashboard.html
+│   ├── feedback.html
+│   └── manage_records.html
+├── utils/
+│   ├── db_helper.py
+│   ├── sentiment_model.py
+│   ├── symptom_predictor.py
+│   └── time_utils.py
+└── requirements.txt
+
+📦 requirements.txt
+Flask
+Flask-Login
+Flask-Bcrypt
+pandas
+numpy
+scikit-learn
+nltk
+pytz
+reportlab
+chart-studio
+
+🧾 OUTPUT FEATURES
+
+✅ IST Time-based logging
+✅ Portable SQLite database
+✅ Admin CRUD operations
+✅ Unique gradient UI/UX
+✅ PDF prescription generator
+✅ Replit and VS deploy-ready (no path issues)

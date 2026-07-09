@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Manage Doctors</h1>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    
+    <div class="card">
+        <h2>Add New Doctor</h2>
+        <form method="POST" action="{{ url_for('add_doctor') }}" class="inline-form">
+            <input type="text" name="name" placeholder="Doctor Name" class="form-input" required>
+            <input type="text" name="specialization" placeholder="Specialization" class="form-input" required>
+            <input type="text" name="contact" placeholder="Contact" class="form-input" required>
+            <input type="text" name="experience" placeholder="Experience" class="form-input" required>
+            <button type="submit" class="btn btn-primary">Add Doctor</button>
+        </form>
+    </div>
+    
+    <div class="card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Contact</th>
+                    <th>Experience</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor['doc_id'] }}</td>
+                    <td>{{ doctor['name'] }}</td>
+                    <td>{{ doctor['specialization'] }}</td>
+                    <td>{{ doctor['contact'] }}</td>
+                    <td>{{ doctor['experience'] }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('delete_doctor', doc_id=doctor['doc_id']) }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
